@@ -1,10 +1,23 @@
-version: '3.8'
-
 services:
-  myapp:
+  gazebo_simulator:
     build:
       context: .  
       dockerfile: dockerfile  
-      network: host
+    privileged: true 
+    environment:
+      - DISPLAY
+      - XAUTHORITY=/tmp/.Xauthority
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - __NV_PRIME_RENDER_OFFLOAD=1
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+    volumes:
+      - $HOME/.Xauthority:/tmp/.Xauthority
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev:/dev
+    # share the network with the host 
+    network_mode: host
+    ipc: host
+    # share the X11 socket with the host to display the GUI
+    runtime: nvidia
     container_name: simulator_contaioner
-    restart: "no"
+    command: ["bash", "-c", "source /opt/ros/jazzy/setup.bash && rviz2"]

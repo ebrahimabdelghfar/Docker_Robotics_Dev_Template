@@ -28,4 +28,6 @@ RUN source /root/.bashrc
 #install gz-harmonic
 RUN apt install -y ros-jazzy-gz-*
 
+# clone the your repo to start the development
+
 
