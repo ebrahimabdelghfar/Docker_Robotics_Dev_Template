@@ -20,4 +20,4 @@ services:
     # share the X11 socket with the host to display the GUI
     runtime: nvidia
     container_name: simulator_contaioner
-    command: ["bash", "-c", "source /opt/ros/jazzy/setup.bash && ros2 launch ros_gz_sim gz_sim.launch.py"]
+    command: ["bash", "-c", "ros2 launch ros_gz_sim gz_sim.launch.py"]

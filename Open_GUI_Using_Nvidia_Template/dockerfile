@@ -21,13 +21,15 @@ RUN apt install -y python3-colcon-common-extensions
 RUN apt update -y &&\
     apt upgrade -y &&\
     apt install ros-jazzy-desktop -y
+
 COPY .bashrc /root/.bashrc
 RUN source /root/.bashrc
-#end of ros2 jazzy installation
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 #install gz-harmonic
 RUN apt install -y ros-jazzy-gz-*
-
 # clone the your repo to start the development
-
+#end of ros2 jazzy installation
+ENTRYPOINT [ "/entrypoint.sh" ]
 
