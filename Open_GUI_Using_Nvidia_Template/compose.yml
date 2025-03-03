@@ -1,8 +1,9 @@
 services:
   gazebo_simulator:
     build:
-      context: .  
-      dockerfile: dockerfile  
+      context: .
+      dockerfile: dockerfile
+    image: gazebo_simulator # name of the image that will be created
     privileged: true 
     environment:
       - DISPLAY
@@ -11,13 +12,14 @@ services:
       - __NV_PRIME_RENDER_OFFLOAD=1
       - __GLX_VENDOR_LIBRARY_NAME=nvidia
     volumes:
-      - $HOME/.Xauthority:/tmp/.Xauthority
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      - /dev:/dev
+      - ~/.Xauthority:/root/.Xauthority # share the Xauthority file with the host
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # share the X11 socket with the host
+      - /dev:/dev # share the devices with the host
     # share the network with the host 
     network_mode: host
     ipc: host
     # share the X11 socket with the host to display the GUI
-    runtime: nvidia
-    container_name: simulator_contaioner
+    runtime: nvidia # use the nvidia runtime to access the GPU
+    container_name: simulator_contaioner # name of the container that will be created
+    restart: no # do not restart the container automatically
     command: ["bash", "-c", "ros2 launch ros_gz_sim gz_sim.launch.py"]

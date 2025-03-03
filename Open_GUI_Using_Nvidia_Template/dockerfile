@@ -25,11 +25,17 @@ RUN apt update -y &&\
 COPY .bashrc /root/.bashrc
 RUN source /root/.bashrc
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-#install gz-harmonic
+# install gz-harmonic
 RUN apt install -y ros-jazzy-gz-*
+
+# move the entrypoint.sh to the container
+COPY entrypoint.sh .
+# make the entrypoint.sh executable
+RUN chmod +x entrypoint.sh 
+
+
+# set the entrypoint
+ENTRYPOINT ["./entrypoint.sh"]
+
 # clone the your repo to start the development
 #end of ros2 jazzy installation
-ENTRYPOINT [ "/entrypoint.sh" ]
-
