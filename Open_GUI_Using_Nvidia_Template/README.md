@@ -1,12 +1,12 @@
-# Introduction
+># Introduction
 The concept of this project is to provide a general Template to make a dockerized ros2 application that can be opened and renedered via Nvidia GPU to work in **Ubuntu systems**
-# Specs
+># Specs
 - Open GUI via nvidia gpu
 - Access to the any connected device such as **Joystick**
 - Installed ros2 jazzy full desktop
 - Adjusted docker compose .yml to provide a developing template
 - Works only in Ubuntu distro
-# Dependencies
+># Dependencies
 ## Install docker
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -57,7 +57,7 @@ sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 ```
 
-# How To Work
+># How To Work
 
 ```bash
 chmod +x run_docker.sh
