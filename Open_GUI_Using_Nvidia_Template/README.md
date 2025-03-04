@@ -56,6 +56,15 @@ sudo apt-get update
 ```bash
 sudo apt-get install -y nvidia-container-toolkit
 ```
+**Step 5**
+```bash
+sudo nvidia-ctk runtime configure --runtime=docker
+```
+
+**Step 6**
+```bash
+sudo systemctl restart docker
+```
 
 ># How To Work
 
