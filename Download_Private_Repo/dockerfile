@@ -6,7 +6,7 @@ ENV GITHUB_USR_TOKEN="your_token"
 #set your organization name (if any if not organization name is not needed) remove the organization name and the / from the url
 ENV ORGANIZATION_NAME="your_organization_name"
 #set your repo name
-ENV REPO_name="your_repo_name"
+ENV REPO_NAME="your_repo_name"
 #set bash as default shell
 SHELL ["/bin/bash", "-c"]
 
@@ -17,5 +17,5 @@ RUN apt -y update\
     && rm -rf /var/lib/apt/lists/* 
 
 #example of cloning a private repo
-RUN git clone https://${GITHUB_USR_NAME}:${GITHUB_USR_TOKEN}@github.com/${ORGANIZATION_NAME}/${REPO_name}.git
+RUN git clone https://${GITHUB_USR_NAME}:${GITHUB_USR_TOKEN}@github.com/${ORGANIZATION_NAME}/${REPO_NAME}.git
     
