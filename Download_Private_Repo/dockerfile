@@ -10,6 +10,7 @@ ENV REPO_name="your_repo_name"
 #set bash as default shell
 SHELL ["/bin/bash", "-c"]
 
+#update and upgrade the system then install git, then remove the cache to reduce the image size
 RUN apt -y update\
     && apt -y upgrade \
     && apt install -y git \ 
