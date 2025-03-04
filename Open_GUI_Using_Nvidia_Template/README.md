@@ -32,7 +32,7 @@ sudo usermod -aG docker $USER
 ```
 After that please restart your device
 
-## Install nvidia docker tool-kit
+>## Install nvidia docker tool-kit
 
 **Step 1:**
 ```bash
@@ -65,6 +65,24 @@ sudo nvidia-ctk runtime configure --runtime=docker
 ```bash
 sudo systemctl restart docker
 ```
+
+**Step 7**
+```bash
+nvidia-ctk runtime configure --runtime=docker --config=$HOME/.config/docker/daemon.json
+```
+
+**Step 8**
+```bash
+systemctl --user restart docker
+```
+
+
+**Step 9**
+```bash
+sudo nvidia-ctk config --set nvidia-container-cli.no-cgroups --in-place
+```
+
+
 
 ># How To Work
 
