@@ -1,0 +1,17 @@
+FROM nvidia/cuda:12.6.1-base-ubuntu24.04
+
+ENV GITHUB_USR_NAME="your_username"
+ENV GITHUB_USR_TOKEN="your_token"
+ENV ORGANIZATION_NAME="your_organization_name"
+ENV REPO_name="your_repo_name"
+#set bash as default shell
+SHELL ["/bin/bash", "-c"]
+
+RUN apt -y update\
+    && apt -y upgrade \
+    && apt install -y git \ 
+    && rm -rf /var/lib/apt/lists/* 
+
+#example of cloning a private repo
+RUN git clone https://${GITHUB_USR_NAME}:${GITHUB_USR_TOKEN}@github.com/${ORGANIZATION_NAME}/${REPO_name}.git
+    
