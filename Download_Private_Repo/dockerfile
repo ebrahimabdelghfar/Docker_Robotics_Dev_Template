@@ -1,8 +1,11 @@
 FROM nvidia/cuda:12.6.1-base-ubuntu24.04
 
-ENV GITHUB_USR_NAME="your_username"
+ENV GITHUB_USR_NAME="your_username" 
+#get your classic token from github https://docs.catalyst.zoho.com/en/tutorials/githubbot/java/generate-personal-access-token/
 ENV GITHUB_USR_TOKEN="your_token"
+#set your organization name (if any if not organization name is not needed) remove the organization name and the / from the url
 ENV ORGANIZATION_NAME="your_organization_name"
+#set your repo name
 ENV REPO_name="your_repo_name"
 #set bash as default shell
 SHELL ["/bin/bash", "-c"]
