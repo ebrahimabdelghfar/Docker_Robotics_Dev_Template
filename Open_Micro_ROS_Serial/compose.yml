@@ -1,11 +1,8 @@
-version: "3.9"
 services:
   micro_ros_agent:
     image: microros/micro-ros-agent:${ROS_DISTRO}
     privileged: true
-    environment:
-      - BAUDRATE=115200
     tty: true
     volumes:
       - /dev:/dev
-    command: ["serial", "-b", "${BAUDRATE}", "--dev", "/dev/ttyUSB*"]
+    command: ["serial", "-b", "${BAUDRATE}", "--dev", "${PORT}"]
