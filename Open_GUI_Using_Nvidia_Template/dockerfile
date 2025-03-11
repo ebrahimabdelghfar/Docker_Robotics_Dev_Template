@@ -22,20 +22,22 @@ RUN apt update -y &&\
     apt upgrade -y &&\
     apt install ros-jazzy-desktop -y
 
-COPY .bashrc /root/.bashrc
-RUN source /root/.bashrc
+COPY .bashrc home/ubuntu/.bashrc
+RUN source home/ubuntu/.bashrc
 
 # install gz-harmonic
-RUN apt install -y ros-jazzy-gz-*
+RUN apt update -y && apt upgrade -y \
+    && apt install -y ros-jazzy-gz-*\
+    && apt install ros-jazzy-rmw-cyclonedds-cpp -y \
+    && rm -rf /var/lib/apt/lists/* 
 
-# move the entrypoint.sh to the container
-COPY entrypoint.sh .
-# make the entrypoint.sh executable
-RUN chmod +x entrypoint.sh 
+COPY entrypoint.sh /home/ubuntu/entrypoint.sh
+RUN chmod +x /home/ubuntu/entrypoint.sh
 
-
-# set the entrypoint
-ENTRYPOINT ["./entrypoint.sh"]
+USER ubuntu
+    WORKDIR /home/ubuntu
+    # set the entrypoint
+    ENTRYPOINT ["./entrypoint.sh"]
 
 # clone the your repo to start the development
 #end of ros2 jazzy installation
