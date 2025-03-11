@@ -24,6 +24,11 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 docker --version #to verfiy that docker is installed
 ``` 
 ## Post-Installation Steps
+***Step 3**: install cycloneDDS on your computer
+```bash
+sudo apt install ros-${ROS_DISTRO}-rmw-cyclonedds-cpp
+echo "export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp" >> ~/.bashrc
+```
 **Step 1**: Start and enable the Docker service
 ```bash
 sudo systemctl enable docker
