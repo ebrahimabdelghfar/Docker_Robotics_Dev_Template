@@ -5,18 +5,16 @@ Yellow='\033[0;33m'
 
 #the following script used to make an operation if there's new change detected and pulled
 
-# Store the current commit hash before pulling
-BEFORE_PULL=$(git rev-parse HEAD)
+LOCAL_COMMIT_ID=$(git rev-parse HEAD)
+# fetch in the latest change in the remote repo from main branch
+git fetch origin main
+# Store the remote commit ID
+REMOTE_COMMIT_ID=$(git rev-parse @{u})
 
-# Perform the git pull
-git pull https://${GITHUB_USR_NAME}:${GITHUB_USR_TOKEN}@github.com/${ORGANIZATION_NAME}/${REPO_NAME}.git
-
-# Store the commit hash after pulling
-AFTER_PULL=$(git rev-parse HEAD)
- 
 # Compare the hashes to see if anything changed
-if [ "$BEFORE_PULL" != "$AFTER_PULL" ]; then
+if [ "$LOCAL_COMMIT_ID" != "$REMOTE_COMMIT_ID" ]; then
     echo -e "${Yellow}Changes detected and pulled from remote repository!"
+    git pull https://${GITHUB_USR_NAME}:${GITHUB_USR_TOKEN}@github.com/${ORGANIZATION_NAME}/${REPO_NAME}.git
     #do some operation after pulling
 else
     echo -e "${Green}Repository is already up to date. No changes pulled."
