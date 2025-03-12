@@ -18,4 +18,5 @@ RUN apt -y update\
 
 #example of cloning a private repo
 RUN git clone https://${GITHUB_USR_NAME}:${GITHUB_USR_TOKEN}@github.com/${ORGANIZATION_NAME}/${REPO_NAME}.git
-    
+
+WORKDIR ${REPO_NAME}

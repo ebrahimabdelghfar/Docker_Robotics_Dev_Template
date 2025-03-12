@@ -36,8 +36,8 @@ RUN chmod +x /home/ubuntu/entrypoint.sh
 
 USER ubuntu
     WORKDIR /home/ubuntu
-    # set the entrypoint
-    ENTRYPOINT ["./entrypoint.sh"]
+        # set the entrypoint
+        ENTRYPOINT ["./entrypoint.sh"]
 
 # clone the your repo to start the development
 #end of ros2 jazzy installation
