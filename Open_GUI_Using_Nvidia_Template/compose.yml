@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile
-    image: gazebo_simulator # name of the image that will be created
+    image: gazebo_simulator_test # name of the image that will be created
     privileged: true 
     environment:
       - DISPLAY
@@ -17,6 +17,7 @@ services:
       - /dev:/dev # share the devices with the host
       - /dev/shm:/dev/shm # share the shared memory with the host
     # share the network with the host 
+    pid: host
     network_mode: host
     ipc: host
     # share the X11 socket with the host to display the GUI
